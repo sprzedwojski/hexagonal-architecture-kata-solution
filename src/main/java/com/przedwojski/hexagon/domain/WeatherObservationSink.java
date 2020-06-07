@@ -1,5 +1,5 @@
 package com.przedwojski.hexagon.domain;
 
-public interface DrivenRepositoryPort {
+public interface WeatherObservationSink {
     void save(WeatherObservation observation);
 }

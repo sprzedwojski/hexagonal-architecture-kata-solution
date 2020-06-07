@@ -1,11 +1,11 @@
 package com.przedwojski.hexagon.infra;
 
-import com.przedwojski.hexagon.domain.DrivenRepositoryPort;
+import com.przedwojski.hexagon.domain.WeatherObservationSink;
 import com.przedwojski.hexagon.domain.WeatherObservation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SimpleLogger implements DrivenRepositoryPort {
+public class SimpleLogger implements WeatherObservationSink {
 
     Logger logger = LoggerFactory.getLogger(SimpleLogger.class);
 

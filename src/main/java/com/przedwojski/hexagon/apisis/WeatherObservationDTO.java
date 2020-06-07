@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Setter
-public class WeatherObservationDTO {
+class WeatherObservationDTO {
     String id;
     String name;
     String time;

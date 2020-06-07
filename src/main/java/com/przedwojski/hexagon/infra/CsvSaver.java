@@ -1,6 +1,6 @@
 package com.przedwojski.hexagon.infra;
 
-import com.przedwojski.hexagon.domain.DrivenRepositoryPort;
+import com.przedwojski.hexagon.domain.WeatherObservationSink;
 import com.przedwojski.hexagon.domain.WeatherObservation;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
@@ -11,7 +11,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CsvSaver implements DrivenRepositoryPort {
+public class CsvSaver implements WeatherObservationSink {
     Logger logger = LoggerFactory.getLogger(CsvSaver.class);
 
     @SneakyThrows
@@ -19,11 +19,12 @@ public class CsvSaver implements DrivenRepositoryPort {
     public void save(WeatherObservation observation) {
         File file = new File("weather.csv");
         FileWriter writer = new FileWriter(file, true);
-        writer.write(convertToCsv(observationToString(observation)) + "\n");
+        writer.write(convertToCsv(observation) + "\n");
         writer.close();
+        logger.info("Added a new observation to the file.");
     }
 
-    private List<String> observationToString(WeatherObservation observation) {
+    private String convertToCsv(WeatherObservation observation) {
         List<String> result = new ArrayList<>();
         result.add(observation.getId());
         result.add(observation.getName());
@@ -31,10 +32,6 @@ public class CsvSaver implements DrivenRepositoryPort {
         result.add(String.valueOf(observation.getTemperatureCelsius()));
         result.add(String.valueOf(observation.getPressureHPa()));
         result.add(observation.getWindDirection());
-        return result;
-    }
-
-    private String convertToCsv(List<String> data) {
-        return String.join(",", data);
+        return String.join(",", result);
     }
 }

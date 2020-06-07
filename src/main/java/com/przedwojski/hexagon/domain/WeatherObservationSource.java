@@ -1,5 +1,5 @@
 package com.przedwojski.hexagon.domain;
 
-public interface DrivingInputPort {
+public interface WeatherObservationSource {
     WeatherObservation getObservation();
 }
